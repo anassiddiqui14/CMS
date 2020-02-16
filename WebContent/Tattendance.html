@@ -1,0 +1,51 @@
+<html>
+<head>
+<title>
+ Teacher's Attendance
+</title>
+<link rel="stylesheet" href="styleAttendance.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+<link rel="icon" type="image/png" href="kcc.jpg">
+</head>
+<body >
+  <div class="chart">
+    <canvas id="myChart"></canvas>
+    </div>
+      <script>
+      let myChart=document.getElementById('myChart').getContext('2d');
+  Chart.defaults.global.defaultFontFamily='Lato';
+  Chart.defaults.global.defaultFontSize=30;
+  Chart.defaults.global.defaultFontColor='#777';
+    let attChart=new Chart(myChart, {
+      type:'bar',
+      data:{
+        labels:['Name1', 'Name2', 'Name3',' Name4','Name5'],
+        datasets:[
+        {
+          label:'Attendance',
+          data:[
+          50,
+          45,
+          47,
+          53,
+          49
+          ],
+          backgroundColor:['green','pink','lightgrey','blue','orange'],
+        }
+        ]
+      },
+      options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+        yAxes: [{
+            ticks: {
+                beginAtZero:true
+            }
+        }]
+    },
+}
+    });
+      </script>
+</body>
+</html>

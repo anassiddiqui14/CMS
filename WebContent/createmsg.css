@@ -1,0 +1,25 @@
+/* CSS Document */
+.header
+{
+ border:solid;
+ background-color:#000000;
+ color:#FFFFFF;
+
+}
+#text
+{
+padding:10px;
+width:80%;
+}
+textarea
+{
+width:80%;
+height:320px;
+}
+#submit
+{
+width:10%;
+padding:1%;
+background-color:#000066;
+color:#FFFFFF;
+}

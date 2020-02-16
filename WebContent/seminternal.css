@@ -1,0 +1,29 @@
+.image
+{
+background:url(images/kcc.jpg);
+background-repeat:no-repeat;
+background-position:center;
+height:200px;
+width:150px;
+opacity:0.3;
+filter:alpha(opacity=30);
+position:absolute;
+}
+.sem
+{
+height:200px;
+width:190px;
+margin-top:10%;
+margin-left:43%;
+
+}
+.sem select
+{
+padding:10px 30px;
+
+}
+.sem input
+{
+margin-left:25%;
+margin-top:5%;
+}

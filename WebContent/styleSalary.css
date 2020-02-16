@@ -1,0 +1,38 @@
+/* CSS Document */
+header
+{
+border-bottom:12px solid #0000CC;
+}
+h1
+{
+text-align:center;
+}
+.salaryslip
+{
+margin-left:17%;
+}
+table
+{
+border-collapse:collapse;
+}
+tr,th,td
+{
+padding:10px 70px;
+}
+.table
+{
+margin-left:17%;
+}
+body
+{
+border:15px solid #CCCCCC;
+}
+*
+{
+margin:0;
+padding:0;
+}
+p
+{
+margin-left:17%;
+}

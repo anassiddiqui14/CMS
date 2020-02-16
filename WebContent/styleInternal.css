@@ -1,0 +1,38 @@
+table
+{
+border-collapse:collapse;
+position:absolute;
+
+}
+table, th ,td
+{
+border:1px solid black;
+padding:10px 40px;
+font-family:"Courier New", Courier, monospace;
+font:bold;
+}
+.table
+{
+height:250px;
+width:180px;
+margin-top:12%;
+margin-left:12%;
+opacity:1;
+filter:alpha(opacity=90);
+}
+table, th
+{
+border-width:2px;
+}
+.image
+{
+background:url(images/kcc.jpg);
+background-repeat:no-repeat;
+background-position:center;
+height:300px;
+width:1300px;
+position:absolute;
+opacity:0.3;
+filter:alpha(opacity=30);
+overflow: hidden;
+}

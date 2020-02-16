@@ -1,0 +1,28 @@
+*
+{
+    margin: 0;
+    padding: 0;
+}
+
+body
+{
+    margin: 0;
+    padding: 0;
+}
+.watermark
+{
+  margin-top:14%;
+  margin-left:40%;
+  position: absolute;
+}
+.watermark img{
+  opacity: 0.5;
+}
+.news {
+  margin-left: 20px;
+}
+.news marquee{
+  float: right;
+  background-color: lightgrey;
+  padding: 80px 25px;
+}
