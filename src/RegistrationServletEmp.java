@@ -1,9 +1,6 @@
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class RegistrationServletEmp extends HttpServlet {
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			String fname=request.getParameter("tf1");
 			String lname=request.getParameter("tf2");
@@ -51,12 +48,23 @@ public class RegistrationServletEmp extends HttpServlet {
 			st.setString(16, city);
 			st.setString(17, state);
 			st.execute();
+			String to=email;
+			String name=fname+" "+lname;
+			String sub="Registration Successful!";
+			String msg="Dear "+name+" ,your user id is "+empid+" and password is "+pwd+". Please login using above credentials.";
+			try
+			{
+			SendMailSS.send("kccitmcms@gmail.com","@kccitm123",to,sub,msg);
+			request.setAttribute("status", "true");
+			request.getRequestDispatcher("RegisterEmployee.jsp").forward(request,response);
+			}
+			catch (Exception e) {
+				// TODO: handle exception
+			}
 		} 
 		catch (Exception e) {
-			e.printStackTrace();
+			response.sendRedirect("http://localhost:8085/CMS/RegisterEmployee1.jsp");
 		}
-		request.setAttribute("status", "true");
-		request.getRequestDispatcher("Registration.jsp").forward(request,response);
-		response.sendRedirect("http://localhost:8085/CMS/RegistrationEmployee.jsp");
+		
 	}
 }

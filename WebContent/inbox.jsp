@@ -33,7 +33,6 @@ for (int i = 0; i<count; i++)
 	rs1.next();
 		for (int j=0; j<3; j++) {
 			tmp = rs1.getString(k).toString();
-			System.out.print(tmp);
 			if (j == 2) {
 				String date[] = tmp.split(" ");
 				tmp = date[1] + " " + date[2];

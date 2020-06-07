@@ -13,19 +13,47 @@ import javax.servlet.http.HttpSession;
 
 public class ChangeServlet extends HttpServlet {
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession hs=request.getSession();
-		String val=request.getParameter("tf1").toString();
-		String tmp=hs.getAttribute("type").toString();
+		String email=request.getParameter("tf1").toString();
+		String mobile=request.getParameter("tf2").toString();
+		String pwd=request.getParameter("tf3").toString();
 		String empid=hs.getAttribute("empid").toString();
 		Connection conn;
 		try {
 			conn = DbConnection.getDbConnection();
-			PreparedStatement st=conn.prepareStatement("update employees set "+tmp+"=? where empid=?");
-			st.setString(1,val);
+			if(pwd.isEmpty() && email.isEmpty() && mobile.isEmpty())
+			{
+				response.sendRedirect("EmployeeDashboard.jsp");
+			}
+			else
+			{
+			if(!email.isEmpty())
+			{
+			PreparedStatement st=conn.prepareStatement("update employees set email=? where empid=?");
+			st.setString(1,email);
 			st.setString(2,empid);
 			st.execute();
-			response.sendRedirect("thnkyouChange.jsp");
+			}
+			if(!mobile.isEmpty())
+			{
+				PreparedStatement st=conn.prepareStatement("update employees set mobile=? where empid=?");
+				st.setString(1,mobile);
+				st.setString(2,empid);
+				st.execute();
+			}
+			if(!pwd.isEmpty())
+			{
+				PreparedStatement st=conn.prepareStatement("update employees set pwd=? where empid=?");
+				st.setString(1,pwd);
+				st.setString(2,empid);
+				st.execute();
+			}
+			hs=request.getSession(true);
+			hs.invalidate();
+			response.sendRedirect("http://localhost:8085/CMS/index.jsp");
+			}
+				
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}

@@ -53,12 +53,12 @@ public class LoginServletAdmin extends HttpServlet {
 					flag++;
 				}
 			else {
-				response.sendRedirect("http://localhost:8085/CMS/incorrectLoginAdmin.html");
+				response.sendRedirect("http://localhost:8085/CMS/incorrectLoginAdmin.jsp");
 			}
 			}
 			if(flag==0)
 			{
-				response.sendRedirect("http://localhost:8085/CMS/incorrectLoginAdmin.html");
+				response.sendRedirect("http://localhost:8085/CMS/incorrectLoginAdmin.jsp");
 			}
 		} 
 		catch (Exception e) {

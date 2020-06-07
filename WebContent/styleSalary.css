@@ -1,36 +1,30 @@
 /* CSS Document */
-header
-{
-border-bottom:12px solid #0000CC;
-}
 h1
 {
-text-align:center;
+text-align:center ;
 }
 .salaryslip
 {
-margin-left:17%;
+margin-left:5% !important;
+margin-top:5% !important;
 }
 table
 {
 border-collapse:collapse;
+border-color: black;
+}
+th
+{
+	background-color:green;
+	color:black; 
 }
 tr,th,td
 {
-padding:10px 70px;
+padding:10px 70px !important;
 }
 .table
 {
-margin-left:17%;
-}
-body
-{
-border:15px solid #CCCCCC;
-}
-*
-{
-margin:0;
-padding:0;
+margin-left:10%;
 }
 p
 {

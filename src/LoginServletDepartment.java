@@ -21,7 +21,7 @@ public class LoginServletDepartment extends HttpServlet {
 			HttpSession hs=request.getSession();
 			Connection conn=DbConnection.getDbConnection();
 			PreparedStatement st=conn.prepareStatement("select pwd from employees where empid=?");
-			PreparedStatement st1=conn.prepareStatement("select fname,empid from employees where empid=?");
+			PreparedStatement st1=conn.prepareStatement("select fname,lname from employees where empid=?");
 			PreparedStatement st2=conn.prepareStatement("select email,mobile from employees where empid=?");
 			st.setString(1, usr);
 			st1.setString(1, usr);
@@ -35,6 +35,7 @@ public class LoginServletDepartment extends HttpServlet {
 			String pass=(String)o;
 			Object o1=rs1.getString(1);
 			String usr1=(String)o1;
+			String lname=rs1.getString(2).toString();
 			String email="";
 			String mobile="";
 			while(rs2.next())
@@ -45,6 +46,7 @@ public class LoginServletDepartment extends HttpServlet {
 			if(pwd.equals(pass))
 			{
 				hs.setAttribute("LOGIN", usr1);
+				hs.setAttribute("lname", lname);
 				hs.setAttribute("name",email);
 				hs.setAttribute("mobile",mobile);
 				hs.setAttribute("empid",usr);
@@ -52,12 +54,12 @@ public class LoginServletDepartment extends HttpServlet {
 				response.sendRedirect("http://localhost:8085/CMS/DepartmentDashboard.jsp");
 				flag++;
 			}			else {
-				response.sendRedirect("http://localhost:8085/CMS/incorrectLoginDepartment.html");
+				response.sendRedirect("http://localhost:8085/CMS/incorrectLoginDepartment.jsp");
 			}
 			}
 			if(flag==0)
 			{
-				response.sendRedirect("http://localhost:8085/CMS/incorrectLoginDepartment.html");
+				response.sendRedirect("http://localhost:8085/CMS/incorrectLoginDepartment.jsp");
 			}
 		} 
 		catch (Exception e) {

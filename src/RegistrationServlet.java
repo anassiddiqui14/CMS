@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class RegistrationServlet extends HttpServlet {
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			String fname=request.getParameter("tf1");
 			String lname=request.getParameter("tf2");
@@ -52,13 +52,18 @@ public class RegistrationServlet extends HttpServlet {
 			String name=fname+" "+lname;
 			String sub="Registration Successful!";
 			String msg="Dear "+name+" ,your user id is "+roll+" and password is "+pwd+". Please login using above credentials.";
+			try
+			{
 			SendMailSS.send("kccitmcms@gmail.com","@kccitm123",to,sub,msg);
+			String page="Registration.jsp";
+			request.setAttribute("status", "true");
+			request.getRequestDispatcher("Registration.jsp").forward(request,response);
+			}
+			catch (Exception e) {
+			}
 		} 
 		catch (Exception e) {
-			e.printStackTrace();
+			response.sendRedirect("http://localhost:8085/CMS/RegisterEmployee1.jsp");
 		}
-		request.setAttribute("status", "true");
-		request.getRequestDispatcher("Registration.jsp").forward(request,response);
-		response.sendRedirect("http://localhost:8085/CMS/Registration.jsp");
 	}
 }

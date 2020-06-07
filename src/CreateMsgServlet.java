@@ -39,18 +39,22 @@ public class CreateMsgServlet extends HttpServlet {
 			String subject="Message from "+user+" with Subject "+request.getParameter("tf2");
 			String to=request.getParameter("tf1");
 			String msg=request.getParameter("tf3")+" \nReply on CMS";
+			String page="CreateMsg.jsp";
 			try
 			{
 			SendMailSS.send("kccitmcms@gmail.com","@kccitm123", to, subject, msg);
 			request.setAttribute("status","true");
-			request.getRequestDispatcher("CreateMsg.jsp").forward(request, response);
-			response.sendRedirect("http://localhost:8085/CMS/CreateMsg.jsp");
+			request.getRequestDispatcher(page).forward(request, response);
 			}
 			catch (Exception e) {
-				response.sendRedirect("http://localhost:8085/CMS/CreateMsg.jsp");
+				//response.sendRedirect("http://localhost:8085/CMS/CreateMsg.jsp");
+			}
+			finally
+			{
+				//response.sendRedirect("http://localhost:8085/CMS/CreateMsg.jsp");
 			}
 		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
+			response.sendRedirect("http://localhost:8085/CMS/CreateMsg.jsp");
 		}
 		
 	}

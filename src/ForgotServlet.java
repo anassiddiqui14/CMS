@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -16,13 +15,29 @@ public class ForgotServlet extends HttpServlet {
 		
 		try {
 			String usr=request.getParameter("tf1");
-			String type=request.getParameter("tf2");
-			String str[]=type.split(" ");
+			String type="";
+			String val="";
+			char[] tmp=usr.toCharArray();
+			if(tmp[0]>=48 && tmp[0]<=57)
+			{
+				type="students";
+				val="roll";
+			}	
+			else if(usr.startsWith("admin"))
+				{
+				type="admin";
+				val="adminid";
+				}
+			else 
+			{
+				type="employees";
+				val="empid";
+			}
 			Connection conn = DbConnection.getDbConnection();
-			PreparedStatement st=conn.prepareStatement("select pwd from "+str[1]+" where "+str[0]+"=?");
-			PreparedStatement st1=conn.prepareStatement("select email from "+str[1]+" where "+str[0]+"=?");
-			PreparedStatement st2=conn.prepareStatement("select fname from "+str[1]+" where "+str[0]+"=?");
-			PreparedStatement st3=conn.prepareStatement("select * from "+str[1]+" where "+str[0]+"=?");
+			PreparedStatement st=conn.prepareStatement("select pwd from "+type+" where "+val+"=?");
+			PreparedStatement st1=conn.prepareStatement("select email from "+type+" where "+val+"=?");
+			PreparedStatement st2=conn.prepareStatement("select fname from "+type+" where "+val+"=?");
+			PreparedStatement st3=conn.prepareStatement("select * from "+type+" where "+val+"=?");
 			st.setString(1, usr);
 			st1.setString(1, usr);
 			st2.setString(1, usr);
@@ -53,7 +68,7 @@ public class ForgotServlet extends HttpServlet {
 				response.sendRedirect("http://localhost:8085/CMS/forgot.jsp");
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+		
 		}
 	}
 }

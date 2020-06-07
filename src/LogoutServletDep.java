@@ -16,6 +16,6 @@ public class LogoutServletDep extends HttpServlet {
 		PrintWriter out=response.getWriter();
 		HttpSession hs=request.getSession(true);
 		hs.invalidate();
-		response.sendRedirect("http://localhost:8085/CMS/home.jsp");
+		response.sendRedirect("http://localhost:8085/CMS/index.jsp");
 	}
 }

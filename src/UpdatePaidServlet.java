@@ -24,8 +24,7 @@ public class UpdatePaidServlet extends HttpServlet {
 		ResultSet rs1=st1.executeQuery();
 		if(rs1.next())
 		{
-			request.setAttribute("status1","true");
-			request.getRequestDispatcher("updSalary.jsp").forward(request, response);;
+			response.sendRedirect("http://localhost:8085/CMS/updSalaryFail.jsp");
 		}
 		else
 		{
@@ -37,8 +36,7 @@ public class UpdatePaidServlet extends HttpServlet {
 		st.setString(2,Double.toString(paid));
 		st.setString(3,hs.getAttribute("month").toString());
 		st.execute();
-		request.setAttribute("status","true");
-		request.getRequestDispatcher("updSalary.jsp").forward(request, response);
+		response.sendRedirect("http://localhost:8085/CMS/updSalarySuccess.jsp");
 		}
 		}
 		catch (Exception e) {
